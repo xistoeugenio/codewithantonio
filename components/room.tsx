@@ -2,7 +2,9 @@
 
 import { ReactNode } from "react";
 import { ClientSideSuspense } from "@liveblocks/react";
+import { LiveMap, LiveList, LiveObject } from "@liveblocks/client";
 
+import { Layer } from "@/types/canvas";
 import { RoomProvider } from "@/liveblocks.config";
 
 interface RoomProps {
@@ -17,6 +19,11 @@ export const Room = ({ children, roomId, fallback }: RoomProps) => {
       id={roomId}
       initialPresence={{
         cursor: null,
+        selection: [],
+      }}
+      initialStorage={{
+        layers: new LiveMap<string, LiveObject<Layer>>(),
+        layersIds: new LiveList(),
       }}
     >
       <ClientSideSuspense fallback={fallback}>

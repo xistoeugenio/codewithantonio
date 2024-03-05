@@ -73,7 +73,7 @@ export type Point = {
   y: number;
 };
 
-export type XYMH = {
+export type XYWH = {
   x: number;
   y: number;
   width: number;
@@ -82,7 +82,7 @@ export type XYMH = {
 
 export enum Side {
   Top = 1,
-  Botton = 2,
+  Bottom = 2,
   Left = 4,
   Right = 8,
 }
@@ -90,10 +90,6 @@ export enum Side {
 export type CanvasState =
   | {
       mode: CanvasMode.None;
-    }
-  | {
-      mode: CanvasMode.Pressing;
-      origin: Point;
     }
   | {
       mode: CanvasMode.SelectionNet;
@@ -113,12 +109,16 @@ export type CanvasState =
         | LayerType.Note;
     }
   | {
-      mode: CanvasMode.Resizing;
-      initialBounds: XYMH;
-      corner: Side;
+      mode: CanvasMode.Pencil;
     }
   | {
-      mode: CanvasMode.Pencil;
+      mode: CanvasMode.Pressing;
+      origin: Point;
+    }
+  | {
+      mode: CanvasMode.Resizing;
+      initialBounds: XYWH;
+      corner: Side;
     };
 
 export enum CanvasMode {
@@ -130,3 +130,10 @@ export enum CanvasMode {
   Resizing,
   Pencil,
 }
+
+export type Layer =
+  | RectangleLayer
+  | EllipseLayer
+  | PathLayer
+  | TextLayer
+  | NoteLayer;
