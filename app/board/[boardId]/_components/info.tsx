@@ -15,7 +15,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { useRenameModal } from "@/store/use-rename-modal";
 
 interface InfoProps {
-  boarId: string;
+  boardId: string;
 }
 
 const font = Poppins({
@@ -27,10 +27,10 @@ const TabSeparator = () => {
   return <div className="text-neutral-300 px-1.5">|</div>;
 };
 
-export const Info = ({ boarId }: InfoProps) => {
+export const Info = ({ boardId }: InfoProps) => {
   const { onOpen } = useRenameModal();
 
-  const data = useQuery(api.board.get, { id: boarId as Id<"boards"> });
+  const data = useQuery(api.board.get, { id: boardId as Id<"boards"> });
 
   if (!data) return <InfoSkeleton />;
 
@@ -65,7 +65,7 @@ export const Info = ({ boarId }: InfoProps) => {
       <Actions id={data._id} title={data.title} side="bottom" sideOffset={10}>
         <div>
           <Hint label="Main menu" side="bottom" sideOffset={10}>
-            <Button size='icon' variant='board'>
+            <Button size="icon" variant="board">
               <Menu />
             </Button>
           </Hint>
