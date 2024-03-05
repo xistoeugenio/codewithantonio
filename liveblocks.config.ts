@@ -67,7 +67,7 @@ type Presence = {
 // automatically persisted and synced to all connected clients.
 type Storage = {
   layers: LiveMap<string, LiveObject<Layer>>;
-  layersIds: LiveList<string>;
+  layerIds: LiveList<string>;
 };
 
 // Optionally, UserMeta represents static/readonly metadata on each user, as
